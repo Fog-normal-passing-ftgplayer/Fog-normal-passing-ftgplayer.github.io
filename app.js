@@ -63,12 +63,12 @@ let CUR = (s => (s === "240" || s === "320") ? s : "320")(_q);
 const $  = (s, r = document) => r.querySelector(s);
 const asset = (res, name) => `assets/${res}/${name}.png`;
 
-/* 生成一个可点击放大的图 */
-function shot(res, name, caption, W, H, cls = "") {
+/* 生成一个可点击放大的图（rel 是 assets/<res>/ 下的相对路径） */
+function media(res, rel, caption, W, H, cls = "") {
   const fig = document.createElement("figure");
   fig.className = "shot " + cls;
   const img = document.createElement("img");
-  img.src = asset(res, name);
+  img.src = `assets/${res}/${rel}`;
   img.alt = caption || name;
   img.width = W;
   img.height = H;
@@ -83,6 +83,10 @@ function shot(res, name, caption, W, H, cls = "") {
   }
   return fig;
 }
+
+/* 静态截图：assets/<res>/<name>.png */
+const shot = (res, name, caption, W, H, cls = "") =>
+  media(res, `${name}.png`, caption, W, H, cls);
 
 function render(res) {
   CUR = res;
@@ -100,11 +104,11 @@ function render(res) {
     history.replaceState(null, "", u);
   } catch (e) { /* file:// 下某些浏览器会拒绝，忽略 */ }
 
-  // 主图 / 壁纸图
+  // 主图 / 壁纸图：用动画 WebP，真正会动的 60 帧循环
   for (const [sel, cap] of [["#hero-img", "主界面（动态壁纸）"], ["#wp-img", "主界面 · 动态壁纸"]]) {
     const el = $(sel);
     if (!el) continue;
-    el.src = asset(res, "home_wallpaper");
+    el.src = `assets/${res}/anim/wallpaper.webp`;
     el.width = cfg.w;
     el.height = cfg.h;
     el.alt = cap;
@@ -114,6 +118,21 @@ function render(res) {
   // 页面列表：每页 = 标题 + 一行图（第一张是页面封面，后面是它的选项列表）
   const box = $("#pages");
   box.textContent = "";
+
+  // 翻页动画（280ms 缓出 + 尾部停顿，便于循环观看）
+  const animBlock = document.createElement("article");
+  animBlock.className = "page page-anim";
+  const ah = document.createElement("div");
+  ah.className = "page-head";
+  ah.innerHTML = `<span class="idx">↔</span><h3>翻页动画</h3>`;
+  animBlock.appendChild(ah);
+  const ag = document.createElement("div");
+  ag.className = "shots";
+  ag.appendChild(media(res, "anim/page_slide.webp",
+    "按 → 切页：整屏横向滑动，280ms 缓出", cfg.w, cfg.h, "wide"));
+  animBlock.appendChild(ag);
+  box.appendChild(animBlock);
+
   for (const p of cfg.pages) {
     const art = document.createElement("article");
     art.className = "page";
