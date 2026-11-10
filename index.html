@@ -5,20 +5,26 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>GP-Combine · 彩色屏幕菜单</title>
 <meta name="description" content="GP-Combine 是基于 GP2040-CE 的双芯格斗手柄固件：Pico 负责输入与灯效，ESP32-S3 驱动 240×135 / 170×320 全彩屏幕，带滑动菜单与 GIF 动态壁纸。">
-<link rel="stylesheet" href="style.css?v=5">
+<link rel="stylesheet" href="style.css?v=6">
 </head>
 <body data-res="320">
 
 <header class="site">
   <div class="wrap">
-    <h1>GP-Combine<span class="dot">.</span></h1>
+    <div class="topbar">
+      <h1>GP-Combine<span class="dot">.</span></h1>
+      <a class="repo" href="https://github.com/Fog-normal-passing-ftgplayer/GP-combine"
+         target="_blank" rel="noopener">GitHub 仓库 <span class="arrow">↗</span></a>
+    </div>
     <p class="tagline">全彩屏幕 · 滑动菜单 · <em>GIF 动态壁纸</em></p>
     <p class="sub">基于 GP2040-CE 的双芯格斗手柄固件 —— Pico 管输入与灯效，ESP32-S3 管屏幕、菜单与无线</p>
-    <div class="switch" role="group" aria-label="屏幕分辨率">
-      <button type="button" data-res="240">240 × 135</button>
-      <button type="button" data-res="320" class="on">170 × 320</button>
+    <div class="controls">
+      <div class="switch" role="group" aria-label="屏幕分辨率">
+        <button type="button" data-res="240">240 × 135</button>
+        <button type="button" data-res="320" class="on">170 × 320</button>
+      </div>
+      <p class="hint">同一套固件、同一套菜单，两种屏幕尺寸</p>
     </div>
-    <p class="hint">同一套固件、同一套菜单，两种屏幕尺寸</p>
   </div>
 </header>
 
@@ -45,7 +51,7 @@
     <h2><span class="num">02</span> 动态壁纸</h2>
     <div class="wp">
       <figure class="shot">
-        <img id="wp-img" alt="动态壁纸主界面">
+        <img id="wp-img" alt="动态壁纸主界面" decoding="async">
         <figcaption>主界面 · 动态壁纸</figcaption>
       </figure>
       <div class="wp-text">
@@ -65,14 +71,16 @@
 
 <footer class="site">
   <div class="wrap">
-    <p>GP-Combine · 基于 <a href="https://github.com/OpenStickCommunity/GP2040-CE">GP2040-CE</a>（MIT）深度定制 ·
-       本固件以 <b>GPL-3.0</b> 发布，源码见仓库</p>
-    <p class="tiny">页面里的截图由固件渲染层在宿主机上直接产出（同一份 .ino 源码，非重绘）。</p>
+    <p>GP-Combine · 基于 <a href="https://github.com/OpenStickCommunity/GP2040-CE" target="_blank" rel="noopener">GP2040-CE</a>（MIT）深度定制 ·
+       本固件以 <b>GPL-3.0</b> 发布 ·
+       <a class="repo-inline" href="https://github.com/Fog-normal-passing-ftgplayer/GP-combine"
+          target="_blank" rel="noopener">源码仓库 ↗</a></p>
+    <p class="tiny">页面里的截图与动画由固件渲染层在宿主机上直接产出（同一份 .ino 源码，非重绘）。</p>
   </div>
 </footer>
 
 <div id="lightbox" hidden><img alt=""></div>
 
-<script src="app.js?v=5"></script>
+<script src="app.js?v=6"></script>
 </body>
 </html>
