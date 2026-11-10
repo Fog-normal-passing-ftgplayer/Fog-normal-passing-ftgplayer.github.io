@@ -61,7 +61,7 @@ const _q = new URLSearchParams(location.search).get("res");
 let CUR = (s => (s === "240" || s === "320") ? s : "320")(_q);
 
 const $  = (s, r = document) => r.querySelector(s);
-const ASSET_V = "6";   // 资源版本号：改了素材就 +1，绕开 GitHub Pages 的 10 分钟缓存
+const ASSET_V = "7";   // 资源版本号：改了素材就 +1，绕开 GitHub Pages 的 10 分钟缓存
 const asset = (res, name) => `assets/${res}/${name}.png?v=${ASSET_V}`;
 
 /* 生成一个可点击放大的图（rel 是 assets/<res>/ 下的相对路径） */
