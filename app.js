@@ -79,6 +79,13 @@ function media(res, rel, caption, W, H, cls = "") {
   if (caption) {
     const cap = document.createElement("figcaption");
     cap.textContent = caption;
+    // 动画素材标个「动态」，一眼能看出来该盯哪儿
+    if (rel.endsWith(".webp")) {
+      const badge = document.createElement("span");
+      badge.className = "badge";
+      badge.textContent = "动态";
+      cap.appendChild(badge);
+    }
     fig.appendChild(cap);
   }
   return fig;
