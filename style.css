@@ -1,0 +1,106 @@
+/* GP-Combine 展示站 —— 配色取自固件主题（RGB565 21,27,39 / 64,160,255） */
+:root{
+  --bg:#0f141d; --bg2:#151b27; --panel:#1a2130; --line:#283346;
+  --text:#d7deeb; --muted:#8b96a8; --accent:#40a0ff; --accent-dim:#2b6fb3;
+  --mono:"JetBrains Mono","Cascadia Mono","SF Mono",Menlo,Consolas,"Noto Sans Mono CJK SC",monospace;
+  --sans:system-ui,-apple-system,"Segoe UI","Noto Sans CJK SC","Source Han Sans SC","Microsoft YaHei",sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);
+     line-height:1.7;-webkit-font-smoothing:antialiased}
+.wrap{width:min(1180px,calc(100% - 40px));margin-inline:auto}
+
+/* ---------- header ---------- */
+header.site{padding:64px 0 40px;border-bottom:1px solid var(--line);
+  background:radial-gradient(900px 320px at 20% -10%,rgba(64,160,255,.16),transparent 70%),
+             linear-gradient(180deg,#141a26,var(--bg))}
+h1{margin:0;font-family:var(--mono);font-size:clamp(32px,5vw,52px);
+   letter-spacing:-.02em;font-weight:700}
+h1 .dot{color:var(--accent)}
+.tagline{margin:6px 0 2px;font-size:clamp(16px,2.2vw,20px)}
+.tagline em{font-style:normal;color:var(--accent)}
+.sub{margin:0;color:var(--muted);font-size:14px}
+
+.switch{display:flex;gap:8px;margin-top:26px;flex-wrap:wrap}
+.switch button{font-family:var(--mono);font-size:13px;letter-spacing:.04em;
+  padding:9px 16px;border-radius:8px;cursor:pointer;background:var(--panel);
+  color:var(--muted);border:1px solid var(--line);transition:.15s}
+.switch button:hover{color:var(--text);border-color:var(--accent-dim)}
+.switch button.on{background:rgba(64,160,255,.14);color:var(--accent);
+  border-color:var(--accent);box-shadow:0 0 0 1px rgba(64,160,255,.25) inset}
+.hint{margin:10px 0 0;color:var(--muted);font-size:12.5px;font-family:var(--mono)}
+
+/* ---------- 图片（像素画关键：最近邻，放大不糊）---------- */
+img{display:block;max-width:100%;height:auto;
+    image-rendering:pixelated;image-rendering:crisp-edges}
+figure{margin:0}
+figure.shot,figure.hero-frame{background:var(--panel);border:1px solid var(--line);
+  border-radius:10px;overflow:hidden}
+figure.shot img,figure.hero-frame img{width:100%}
+figure figcaption{padding:9px 12px;font-family:var(--mono);font-size:12px;
+  color:var(--muted);border-top:1px solid var(--line);background:rgba(0,0,0,.18)}
+
+/* ---------- hero ---------- */
+#hero{padding:44px 0 10px}
+.hero-frame{margin-inline:auto;box-shadow:0 24px 60px -30px rgba(0,0,0,.9)}
+body[data-res="240"] .hero-frame{max-width:760px}
+body[data-res="320"] .hero-frame{max-width:980px}
+.cap{text-align:center;color:var(--muted);font-size:13px;margin:16px 0 0;font-family:var(--mono)}
+
+/* ---------- section ---------- */
+section.wrap{padding:56px 0}
+h2{font-family:var(--mono);font-size:clamp(20px,2.6vw,26px);margin:0 0 10px;
+   display:flex;align-items:baseline;gap:12px;
+   border-bottom:1px solid var(--line);padding-bottom:14px}
+h2 .num{color:var(--accent);font-size:.72em;letter-spacing:.1em}
+.lead{color:var(--muted);font-size:14.5px;margin:0 0 34px;max-width:74ch}
+kbd{font-family:var(--mono);font-size:12px;padding:2px 7px;border-radius:5px;
+    background:var(--panel);border:1px solid var(--line);color:var(--text)}
+
+/* ---------- 每一页 ---------- */
+.page{padding:30px 0;border-top:1px dashed var(--line)}
+.page:first-child{border-top:0;padding-top:0}
+.page-head{display:flex;align-items:baseline;gap:10px;margin-bottom:16px}
+.page-head .idx{font-family:var(--mono);color:var(--accent);font-size:13px;letter-spacing:.08em}
+.page-head h3{margin:0;font-size:17px;font-weight:600}
+
+.shots{display:grid;gap:18px;
+  grid-template-columns:repeat(auto-fill,minmax(340px,1fr))}
+figure.shot{cursor:zoom-in;transition:transform .16s,border-color .16s}
+figure.shot:hover{transform:translateY(-3px);border-color:var(--accent-dim)}
+.none{color:var(--muted);font-size:14px;font-family:var(--mono);
+      display:flex;align-items:center;margin:0}
+
+/* ---------- 动态壁纸 ---------- */
+.wp{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);
+    gap:34px;align-items:start}
+.wp-text p{margin-top:0}
+.wp-text ul{margin:0 0 16px;padding-left:20px;color:var(--muted);font-size:14.5px}
+.wp-text li{margin:7px 0}
+.wp-text b{color:var(--text);font-weight:600}
+code{font-family:var(--mono);font-size:.9em;background:var(--panel);
+     padding:2px 6px;border-radius:5px;border:1px solid var(--line)}
+.note{color:var(--muted);font-size:13px;font-family:var(--mono);
+      border-left:2px solid var(--accent-dim);padding-left:12px}
+
+/* ---------- footer ---------- */
+footer.site{border-top:1px solid var(--line);padding:34px 0 60px;margin-top:20px;
+  color:var(--muted);font-size:13px;background:var(--bg2)}
+footer.site a{color:var(--accent);text-decoration:none}
+footer.site a:hover{text-decoration:underline}
+footer.site .tiny{font-size:12px;opacity:.75;font-family:var(--mono)}
+
+/* ---------- 灯箱 ---------- */
+#lightbox{position:fixed;inset:0;z-index:50;display:grid;place-items:center;
+  background:rgba(6,9,14,.92);padding:24px;cursor:zoom-out}
+#lightbox[hidden]{display:none}
+#lightbox img{max-width:min(96vw,1400px);max-height:86vh;width:auto;border-radius:8px;
+  border:1px solid var(--line);box-shadow:0 30px 80px -30px #000;
+  image-rendering:pixelated}
+
+/* ---------- 窄屏 ---------- */
+@media (max-width:900px){
+  .wp{grid-template-columns:1fr}
+  .shots{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+}

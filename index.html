@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GP-Combine · 彩色屏幕菜单</title>
+<meta name="description" content="GP-Combine 是基于 GP2040-CE 的双芯格斗手柄固件：Pico 负责输入与灯效，ESP32-S3 驱动 240×135 / 170×320 全彩屏幕，带滑动菜单与 GIF 动态壁纸。">
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-res="320">
+
+<header class="site">
+  <div class="wrap">
+    <h1>GP-Combine<span class="dot">.</span></h1>
+    <p class="tagline">全彩屏幕 · 滑动菜单 · <em>GIF 动态壁纸</em></p>
+    <p class="sub">基于 GP2040-CE 的双芯格斗手柄固件 —— Pico 管输入与灯效，ESP32-S3 管屏幕、菜单与无线</p>
+    <div class="switch" role="group" aria-label="屏幕分辨率">
+      <button type="button" data-res="240">240 × 135</button>
+      <button type="button" data-res="320" class="on">170 × 320</button>
+    </div>
+    <p class="hint">同一套固件、同一套菜单，两种屏幕尺寸</p>
+  </div>
+</header>
+
+<main>
+
+  <section id="hero" class="wrap">
+    <figure class="hero-frame">
+      <img id="hero-img" alt="主界面（动态壁纸）" width="640" height="340">
+    </figure>
+    <p class="cap">主界面 · GIF 动态壁纸作背景，按键布局与摇杆状态实时叠加</p>
+  </section>
+
+  <section id="menu" class="wrap">
+    <h2><span class="num">01</span> 滑动菜单</h2>
+    <p class="lead">
+      长按 <kbd>S2</kbd> 三秒进菜单；<kbd>←</kbd> <kbd>→</kbd> 滑动换页，
+      <kbd>A</kbd> 进子页，<kbd>B</kbd> 返回。<br>
+      每个页面下面是它的封面图和全部选项列表 —— 一张图里能看到该组的所有项和当前值。
+    </p>
+    <div id="pages"></div>
+  </section>
+
+  <section id="wallpaper" class="wrap">
+    <h2><span class="num">02</span> 动态壁纸</h2>
+    <div class="wp">
+      <figure class="shot">
+        <img id="wp-img" alt="动态壁纸主界面">
+        <figcaption>主界面 · 动态壁纸</figcaption>
+      </figure>
+      <div class="wp-text">
+        <p>把一段 GIF 丢进配置助手，它会转成 RGB565 调色板帧序列写进手柄，主界面就以它作背景循环播放 —— 按键布局和摇杆指示浮在上面。</p>
+        <ul>
+          <li><b>60 帧循环</b>，帧延迟按 GIF 原始节奏</li>
+          <li><b>16 / 32 色调色板</b>可选，32 色画质更好</li>
+          <li>开启动态壁纸时<b>屏保自动禁用</b>，避免两套动画打架</li>
+          <li>壁纸来自卡内文件 <code>/wp/1.gfr</code>，可随时替换</li>
+        </ul>
+        <p class="note">下面这些截图都是固件本体在电脑上渲染出来的真实画面，不是重画的示意图。</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <p>GP-Combine · 基于 <a href="https://github.com/OpenStickCommunity/GP2040-CE">GP2040-CE</a>（MIT）深度定制 ·
+       本固件以 <b>GPL-3.0</b> 发布，源码见仓库</p>
+    <p class="tiny">页面里的截图由固件渲染层在宿主机上直接产出（同一份 .ino 源码，非重绘）。</p>
+  </div>
+</footer>
+
+<div id="lightbox" hidden><img alt=""></div>
+
+<script src="app.js"></script>
+</body>
+</html>
