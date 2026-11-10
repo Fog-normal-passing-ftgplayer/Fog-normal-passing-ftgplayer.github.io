@@ -61,14 +61,15 @@ const _q = new URLSearchParams(location.search).get("res");
 let CUR = (s => (s === "240" || s === "320") ? s : "320")(_q);
 
 const $  = (s, r = document) => r.querySelector(s);
-const asset = (res, name) => `assets/${res}/${name}.png`;
+const ASSET_V = "4";   // 资源版本号：改了素材就 +1，绕开 GitHub Pages 的 10 分钟缓存
+const asset = (res, name) => `assets/${res}/${name}.png?v=${ASSET_V}`;
 
 /* 生成一个可点击放大的图（rel 是 assets/<res>/ 下的相对路径） */
 function media(res, rel, caption, W, H, cls = "") {
   const fig = document.createElement("figure");
   fig.className = "shot " + cls;
   const img = document.createElement("img");
-  img.src = `assets/${res}/${rel}`;
+  img.src = `assets/${res}/${rel}?v=${ASSET_V}`;
   img.alt = caption || name;
   img.width = W;
   img.height = H;
@@ -115,7 +116,7 @@ function render(res) {
   for (const [sel, cap] of [["#hero-img", "主界面（动态壁纸）"], ["#wp-img", "主界面 · 动态壁纸"]]) {
     const el = $(sel);
     if (!el) continue;
-    el.src = `assets/${res}/anim/wallpaper.webp`;
+    el.src = `assets/${res}/anim/wallpaper.webp?v=${ASSET_V}`;
     el.width = cfg.w;
     el.height = cfg.h;
     el.alt = cap;

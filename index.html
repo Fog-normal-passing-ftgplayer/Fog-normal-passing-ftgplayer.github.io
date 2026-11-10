@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>GP-Combine · 彩色屏幕菜单</title>
 <meta name="description" content="GP-Combine 是基于 GP2040-CE 的双芯格斗手柄固件：Pico 负责输入与灯效，ESP32-S3 驱动 240×135 / 170×320 全彩屏幕，带滑动菜单与 GIF 动态壁纸。">
-<link rel="stylesheet" href="style.css?v=3">
+<link rel="stylesheet" href="style.css?v=4">
 </head>
 <body data-res="320">
 
@@ -28,7 +28,7 @@
     <figure class="hero-frame">
       <img id="hero-img" alt="主界面（动态壁纸）" width="640" height="340" decoding="async">
     </figure>
-    <p class="cap">主界面 · GIF 动态壁纸作背景，按键布局与摇杆状态实时叠加 —— 这是真实循环，不是截图</p>
+    <p class="cap">主界面 · GIF 动态壁纸作背景 —— <b>此处为 2× 慢放</b>，真机是 20fps / 3 秒一圈</p>
   </section>
 
   <section id="menu" class="wrap">
@@ -51,12 +51,12 @@
       <div class="wp-text">
         <p>把一段 GIF 丢进配置助手，它会转成 RGB565 调色板帧序列写进手柄，主界面就以它作背景循环播放 —— 按键布局和摇杆指示浮在上面。</p>
         <ul>
-          <li><b>60 帧 / 3 秒循环</b>，帧延迟按 GIF 原始节奏（20fps）</li>
+          <li><b>60 帧循环</b>，真机按 GIF 原始节奏（本例 20fps / 3 秒一圈）</li>
           <li><b>16 / 32 色调色板</b>可选，32 色画质更好</li>
           <li>开启动态壁纸时<b>屏保自动禁用</b>，避免两套动画打架</li>
           <li>壁纸来自卡内文件 <code>/wp/1.gfr</code>，可随时替换</li>
         </ul>
-        <p class="note">下面这些截图都是固件本体在电脑上渲染出来的真实画面，不是重画的示意图。</p>
+        <p class="note">截图与动画都是固件本体在电脑上渲染出来的真实画面，不是重绘；本页壁纸按 2× 慢放（每帧 100ms）以便看清，真机为每帧 50ms。</p>
       </div>
     </div>
   </section>
@@ -73,6 +73,6 @@
 
 <div id="lightbox" hidden><img alt=""></div>
 
-<script src="app.js?v=3"></script>
+<script src="app.js?v=4"></script>
 </body>
 </html>
